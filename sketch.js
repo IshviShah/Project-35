@@ -6,6 +6,7 @@ var feedDog, addFoods;
 var fedTime, lastFed;
 var foodObj;
 
+
 function preload()
 {
   //load images here
@@ -18,7 +19,7 @@ function setup() {
   createCanvas(500, 500);
 
   foodObj = new Food();
-  
+
   dog = createSprite(250,300,50,50);
   dog.addImage(dogImg);
   dog.scale = 0.2;
@@ -32,6 +33,8 @@ function setup() {
   addFood = createButton("Add Food");
   addFood.position(800,95);
   addFood.mousePressed(addFoods);
+
+  
 }
 
 
@@ -45,10 +48,10 @@ function draw() {
     noStroke();
     textSize(20)
     fill("black")
-    //text("Food Remaining:  " + foodS, 20, 200)
-  
+    text("Food Remaining:  " + foodS, 20, 200)
 
-    fedTime= database.ref('FeedTime');
+
+   fedTime= database.ref('FeedTime');
     fedTime.on("value",function(data){
       lastFed = data.val();
     });
@@ -83,7 +86,7 @@ function writeStock(x){
     Food : x
   })
 }
-function feedDod(){
+function feedDog(){
   dog.addImage(hapDogImg);
 
   foodObj.updateFoodStock(foodObj.getFoodStock()-1);
